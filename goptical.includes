@@ -1,9 +1,0 @@
-goptical_core/src
-goptical_core/src/Goptical/Sys
-examples/tessar_lens
-examples/simple_refractor
-examples/hierarchical_design
-examples/segmented_mirror
-examples/render_3d
-examples/curve_model
-examples/fiber_collimator
