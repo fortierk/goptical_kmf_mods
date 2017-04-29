@@ -31,7 +31,7 @@
 #include "Goptical/common.hh"
 
 #include "Goptical/Math/vector.hh"
-#include "Goptical/Math/vector_pair.hh"
+#include "Goptical/Math/vector_pair_eigen.hh"
 #include "Goptical/Math/matrix.hh"
 #include "Goptical/Math/quaternion.hh"
 

@@ -20,6 +20,7 @@ AC_CONFIG_MACRO_DIR(build-aux)
 
 AM_INIT_AUTOMAKE
 
+# Checks for programs.
 AC_PROG_CXX
 AC_DISABLE_STATIC
 AC_PROG_LIBTOOL
@@ -82,28 +83,55 @@ AC_CHECK_LIB([m],[cos])
 AC_CHECK_LIB([gslcblas],[cblas_dgemm])
 AC_CHECK_LIB([gsl],[gsl_blas_dgemm])
 
-
-
-
 abs_srcdir=`cd $srcdir ; pwd`
 abs_builddir=`pwd`
 ac_configure_args="$ac_configure_args --with-goptical-core-include=$abs_srcdir/goptical_core/src "
 ac_configure_args="$ac_configure_args --with-goptical-core-lib=$abs_builddir/goptical_core/src/libgoptical.la "
 
-AC_CONFIG_FILES([
-  Makefile
-  doc/Makefile
-  doc/texinfo/Makefile
-  examples/Makefile
-  examples/simple_refractor/Makefile
-  examples/hierarchical_design/Makefile
-  examples/render_3d/Makefile
-  examples/curve_model/Makefile
-  examples/tessar_lens/Makefile
-  examples/segmented_mirror/Makefile
+AC_CONFIG_FILES([Makefile
+		 doc/Makefile
+		 doc/texinfo/Makefile
+  		 examples/Makefile
+		 examples/curve_model/Makefile
+		 examples/hierarchical_design/Makefile
+		 examples/render_3d/Makefile
+		 examples/segmented_mirror/Makefile
+  		 examples/simple_refractor/Makefile
+ 		 examples/tessar_lens/Makefile
+  
 ])
 
-AC_CONFIG_SUBDIRS(goptical_core)
-AC_CONFIG_SUBDIRS(goptical_design)
+#
+# Eigen Matrix Library
+#
+
+AC_MSG_CHECKING([for eigen3])
+AC_ARG_WITH(eigen3-include,
+AC_HELP_STRING([--with-eigen3-include=DIR], [Path to the eigen3 header files]),
+					    [eig_incs=$withval],
+					    [eig_incs=/usr/include/eigen3])
+AC_CHECK_FILE($eig_incs/Eigen,,
+	[AC_CHECK_FILE(/usr/local/include/eigen3,[eig_incs=/usr/local/include/eigen3])])
+
+eig_ac_save_cppflags=$CPPFLAGS
+CPPFLAGS="$CPPFLAGS -I$eig_incs"
+
+lib_eig_avail=no
+AC_CHECK_HEADER(Eigen/Dense,
+	lib_eig_avail=yes,)
+
+CPPFLAGS=$eig_ac_save_cppflags
+
+if test x"$lib_eig_avail" = xyes; then
+   AC_SUBST([EIGEN3_INC], [$eig_incs])
+else
+AC_MSG_ERROR([Cannot find Eigen3])
+fi
+AM_CONDITIONAL(HAVE_EIGEN3, test x"$lib_eig_avail" = xyes)
+
+
+
+AC_CONFIG_SUBDIRS([goptical_core
+		   goptical_design])
 AC_OUTPUT
 

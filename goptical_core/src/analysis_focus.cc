@@ -31,6 +31,8 @@
 #include <Goptical/Trace/Result>
 #include <Goptical/Trace/Distribution>
 
+#include <eigen3/Eigen/Dense>
+
 namespace _Goptical
 {
 
@@ -53,8 +55,10 @@ namespace _Goptical
       // find beam average vector
 
       double count = (double)_intercepts->size();
+      //Math::VectorPair3 beam_avg(Math::Vector3(0, 0, 0),
+                                 //Math::Vector3(0, 0, 0));
+
       Math::VectorPair3 beam_avg(Math::Vector3(0, 0, 0),
-                                 Math::Vector3(0, 0, 0));
 
       GOPTICAL_FOREACH(i, *_intercepts)
         {

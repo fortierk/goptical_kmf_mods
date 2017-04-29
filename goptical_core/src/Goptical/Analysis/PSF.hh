@@ -37,6 +37,7 @@
 
 #include "Goptical/Analysis/pointimage.hh"
 
+
 namespace _Goptical
 {
 
@@ -52,15 +53,17 @@ namespace _Goptical
        This class is designed to find the best point of PSF of
        an optical system.
     */
-    class PSF : public PointImage
+    class PSF : PointImage
+    //class PSF
     {
     public:
       PSF(Sys::System &system);
+      //PSF();
 
       inline void invalidate();
-    
       int get_num_points();
-      
+      //double compute_Fresnel_number(double aperture_half_width, double z);
+      double compute_Fresnel_number(double wavelength, double z);
       
       
       double** get_PSF(int surface);
@@ -71,9 +74,9 @@ namespace _Goptical
       void compute_PSF();
       void set_num_points(int N);
       int num_points; //this is will be converted to closet power of 2
-      int type;
-      bool              _processed_PSF;
-      double** PSF;  
+      int PSF_type;
+      bool _processed_PSF;
+      double** _PSF;
     };
 
   }

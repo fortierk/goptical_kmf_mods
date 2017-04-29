@@ -622,6 +622,7 @@ namespace _Goptical {
     class Spot;
     class Focus;
     class RayFan;
+    class PSF;
   }
 
 }

@@ -23,15 +23,16 @@
 */
 
 
-#ifndef GOPTICAL_MATH_VECTORPAIR_HH_
-#define GOPTICAL_MATH_VECTORPAIR_HH_
+#ifndef GOPTICAL_MATH_VECTORPAIR_EIGEN_HH_
+#define GOPTICAL_MATH_VECTORPAIR_EIGEN_HH_
 
 #include <ostream>
-
+#include <eigen3/Eigen/Dense>
 #include "Goptical/common.hh"
 
 #include "Goptical/error.hh"
-#include "Goptical/Math/vector.hh"
+//#include "Goptical/Math/vector.hh"
+
 
 namespace _Goptical {
 
@@ -47,32 +48,35 @@ namespace _Goptical {
      */
     template <int N> struct VectorPairBase
     {
+      typedef Eigen::Matrix<float, N, 1> myVector;
+
       inline VectorPairBase();
 
-      inline VectorPairBase(const Vector<N> &a, const Vector<N> &b);
+      //inline VectorPairBase(const Vector<N> &a, const Vector<N> &b);
+      inline VectorPairBase(myVector &a, myVector &b);
 
       /** Get a reference to a vector stored in the pair */
-      inline const Vector<N> & operator[](int n) const;
+      inline const myVector & operator[](int n) const;
       /** Get a reference to a vector stored in the pair */
-      inline Vector<N> & operator[](int n);
+      inline myVector & operator[](int n);
 
       inline const VectorPairBase & operator+=(const VectorPairBase &p);
       inline VectorPairBase operator*(double factor);
 
       /** Get reference to first vector */
-      inline Vector<N> & origin();
+      inline myVector & origin();
       /** Get reference to first vector */
-      inline const Vector<N> & origin() const;
+      inline const myVector & origin() const;
 
       /** Get reference to second vector */
-      inline Vector<N> & direction();
+      inline myVector & direction();
       /** Get reference to second vector */
-      inline const Vector<N> & direction() const;
+      inline const myVector & direction() const;
 
       /** Get reference to second vector */
-      inline Vector<N> & normal();
+      inline myVector & normal();
       /** Get reference to second vector */
-      inline const Vector<N> & normal() const;
+      inline const myVector & normal() const;
 
       /** Consider the @ref VectorPair as a segment with two point
           vectors and find the closest point on this segment to a
@@ -81,7 +85,7 @@ namespace _Goptical {
           @return position of the closest point on segment.
           @see seg_pt_clst_pt_scale
       */
-      inline Vector<N> seg_pt_clst_pt(const Vector<N> &point) const;
+      inline myVector seg_pt_clst_pt(const myVector &point) const;
 
       /** Consider the @ref VectorPair as a segment with two point
           vectors and find the closest point on this segment to a
@@ -90,7 +94,7 @@ namespace _Goptical {
           @return position on segment, value is in [0, 1] range if on segment.
           @see seg_pt_clst_pt
       */
-      inline double seg_pt_clst_pt_scale(const Vector<N> &point) const;
+      inline double seg_pt_clst_pt_scale(const myVector &point) const;
 
       /** Consider the @ref VectorPair as a line with origin and
           direction vectors and find the closest point on this line to
@@ -99,7 +103,7 @@ namespace _Goptical {
           @return position of the closest point on the line.
           @see ln_pt_clst_pt_scale
       */
-      inline Vector<N> ln_pt_clst_pt(const Vector<N> &point) const;
+      inline myVector ln_pt_clst_pt(const myVector &point) const;
 
       /** Consider the @ref VectorPair as a line with origin and
           direction vectors and find the closest point on this line to
@@ -108,10 +112,10 @@ namespace _Goptical {
           @return scale factor of the direction vector from origin.
           @see ln_pt_clst_pt
       */
-      inline double ln_pt_clst_pt_scale(const Vector<N> &point) const;
+      inline double ln_pt_clst_pt_scale(const myVector &point) const;
 
     protected:
-      Vector<N> _v[2];
+      myVector _v[2];
     };
 
     /**
@@ -123,11 +127,12 @@ namespace _Goptical {
      */
     template <int N> struct VectorPair : public VectorPairBase<N>
     {
+      typedef Eigen::Matrix<float, N, 1> myVector;
       inline VectorPair();
 
       inline VectorPair(const VectorPairBase<N> &vp);
 
-      inline VectorPair(const Vector<N> &a, const Vector<N> &b);
+      inline VectorPair(const myVector &a, const myVector &b);
     };
 
     /**
@@ -211,7 +216,7 @@ namespace _Goptical {
 
       inline VectorPair(const VectorPairBase<3> &vp);
 
-      inline VectorPair(const Vector<3> &a, const Vector<3> &b = vector3_001);
+      inline VectorPair(const Eigen::Vector3cf &a, const Eigen::Vector3cf &b = vector3_001);
 
       inline VectorPair(double ax, double ay, double az,
                         double bx = 0.0, double by = 0.0, double bz = 1.0);
@@ -238,7 +243,7 @@ namespace _Goptical {
           @this throws if lines are almost parallel.
           @see ln_ln_clst_pt_scale
       */
-      inline Vector<3> ln_ln_clst_pt(const VectorPair<3> &line) const throw (Error);
+      inline Eigen::Vector3cf ln_ln_clst_pt(const Eigen::Vector3cf &line) const throw (Error);
 
       /** Consider the @ref VectorPair as a line with origin and
           direction vectors and find the closest point on this line to
@@ -248,7 +253,7 @@ namespace _Goptical {
           @this throws if lines are almost parallel.
           @see ln_ln_clst_pt
       */
-      inline double ln_ln_clst_pt_scale(const VectorPair<3> &line) const throw (Error);
+      inline double ln_ln_clst_pt_scale(const Eigen::Vector3cf &line) const throw (Error);
 
       /** Consider the @ref VectorPair as a plane and find
           intersection point with a line. Plane is defined by origin

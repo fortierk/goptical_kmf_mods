@@ -24,7 +24,7 @@
 
 
 #include <Goptical/Curve/Sphere>
-#include <Goptical/Math/Vector>
+//#include <Goptical/Math/Vector>
 #include <Goptical/Math/VectorPair>
 #include <Goptical/Math/VectorPair>
 

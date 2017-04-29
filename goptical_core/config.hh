@@ -8,13 +8,13 @@
 /* #undef GOPTICAL_HAVE_GD */
 
 /* gl rendering library enabled */
-/* #undef GOPTICAL_HAVE_GL */
+#define GOPTICAL_HAVE_GL 1
 
 /* plplot rendering library enabled */
 /* #undef GOPTICAL_HAVE_PLPLOT */
 
 /* x11 rendering library enabled */
-/* #undef GOPTICAL_HAVE_X11 */
+#define GOPTICAL_HAVE_X11 1
 
 /* Define to 1 if you have the <dlfcn.h> header file. */
 #define HAVE_DLFCN_H 1
@@ -49,8 +49,7 @@
 /* Define to 1 if you have the <unistd.h> header file. */
 #define HAVE_UNISTD_H 1
 
-/* Define to the sub-directory in which libtool stores uninstalled libraries.
-   */
+/* Define to the sub-directory where libtool stores uninstalled libraries. */
 #define LT_OBJDIR ".libs/"
 
 /* Name of package */

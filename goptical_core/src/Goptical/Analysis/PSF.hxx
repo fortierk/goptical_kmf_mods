@@ -37,30 +37,30 @@ namespace _Goptical
 
     void PSF::invalidate()
     {
-    _processed_PSF= false;
-    _processed_trace= false;
+      _processed_PSF= false;
+      _processed_trace= false;
     }
 
     void PSF::set_num_points(int N)
     {
       if (N < 32)
-    num_points= 32;
+        num_points= 32;
       else if (N > 2048)
-    num_points= 2048;
-        
+        num_points= 2048;
+
       else {
-        // find closet power of 2
-    double exponent= ceil(log2(N)); // round up
-    num_points= pow(2, exponent);
-      }
+          // find closet power of 2
+          double exponent= ceil(log2(N)); // round up
+          num_points= pow(2, exponent);
+        }
     }
     int PSF::get_num_points()
     {
       return num_points;
     }
-    }
-    
-  }
+   }
+
+
 }
 
 #endif

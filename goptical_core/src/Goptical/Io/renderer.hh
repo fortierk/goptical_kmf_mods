@@ -32,7 +32,7 @@
 
 #include "Goptical/Math/vector.hh"
 #include "Goptical/Math/triangle.hh"
-#include "Goptical/Math/vector_pair.hh"
+#include "Goptical/Math/vector_pair_eigen.hh"
 #include "Goptical/Io/rgb.hh"
 
 namespace _Goptical {

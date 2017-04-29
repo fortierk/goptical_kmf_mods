@@ -1,0 +1,10 @@
+
+#include "Goptical/Analysis/PSF.hh"
+#include "Goptical/Analysis/PSF.hxx"
+
+namespace Goptical {
+  namespace Analysis {
+    using _Goptical::Analysis::PSF;
+  }
+}
+

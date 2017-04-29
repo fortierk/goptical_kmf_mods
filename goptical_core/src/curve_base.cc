@@ -23,9 +23,9 @@
 */
 
 #include <Goptical/Curve/Base>
-#include <Goptical/Math/Vector>
+//#include <Goptical/Math/Vector>
 #include <Goptical/Math/VectorPair>
-
+#include <eigen3/Eigen/Dense>
 #include <gsl/gsl_deriv.h>
 
 namespace _Goptical {
@@ -34,7 +34,8 @@ namespace _Goptical {
 
     // Default curve/ray intersection iterative method
 
-    bool Base::intersect(Math::Vector3 &point, const Math::VectorPair3 &ray) const
+    //bool Base::intersect(Math::Vector3 &point, const Math::VectorPair3 &ray) const
+    bool Base::intersect(const Eigen::Vector3f &point, const Math::VectorPair3 &ray) const
     {
       Math::VectorPair3 p;
 

@@ -1,0 +1,2 @@
+1. Replace Matrix class with GNU scientific library
+2. Fourier optics.

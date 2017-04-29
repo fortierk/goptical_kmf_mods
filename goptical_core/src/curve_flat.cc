@@ -22,9 +22,10 @@
 
 */
 
+#include <eigen3/Eigen/Dense>
 
 #include <Goptical/Curve/Flat>
-#include <Goptical/Math/Vector>
+//#include <Goptical/Math/Vector>
 #include <Goptical/Math/VectorPair>
 #include <Goptical/Math/VectorPair>
 
@@ -63,7 +64,7 @@ namespace _Goptical {
 
     */
 
-    bool Flat::intersect(Math::Vector3 &point, const Math::VectorPair3 &ray) const
+    bool Flat::intersect(Eigen::Vector3f &point, const Math::VectorPair3 &ray) const
     {
       double    s = ray.direction().z();
 
@@ -80,9 +81,9 @@ namespace _Goptical {
       return true;
     }
 
-    void Flat::normal(Math::Vector3 &normal, const Math::Vector3 &point) const
+    void Flat::normal(Eigen::Vector3f &normal, const Eigen::Vector3f &point) const
     {
-      normal = Math::Vector3(0, 0, -1);
+      normal = Eigen::Vector3f(0, 0, -1);
     }
 
     Flat flat;

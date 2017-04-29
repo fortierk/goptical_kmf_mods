@@ -1,0 +1,12 @@
+autoscan: warning: missing AC_CHECK_FUNCS([sqrt]) wanted by: 
+	examples/segmented_mirror/segmented.cc:76
+autoscan: warning: missing AC_CHECK_HEADER_STDBOOL wanted by: 
+	examples/hierarchical_design/newton.cc:150
+	examples/segmented_mirror/segmented.cc:186
+autoscan: warning: missing AC_PATH_X wanted by: 
+	examples/render_3d/x11_app.cc:25
+autoscan: warning: missing AC_PROG_RANLIB wanted by: 
+	build-aux/ltmain.sh:3772
+autoscan: warning: missing AC_TYPE_SIZE_T wanted by: 
+	examples/segmented_mirror/segmented.cc:118
+	examples/segmented_mirror/segmented.cc:123

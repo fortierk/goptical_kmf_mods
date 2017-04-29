@@ -31,8 +31,8 @@
 #include "Goptical/common.hh"
 
 #include "Goptical/Math/transform.hh"
-#include "Goptical/Math/vector_pair.hh"
-#include "Goptical/Math/vector_pair.hh"
+#include "Goptical/Math/vector_pair_eigen.hh"
+//#include "Goptical/Math/vector_pair.hh"
 
 namespace _Goptical {
 

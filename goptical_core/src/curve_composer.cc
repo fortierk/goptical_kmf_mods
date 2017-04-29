@@ -22,7 +22,9 @@
 
 */
 
-#include <Goptical/Math/Vector>
+#include <eigen3/Eigen/Dense>
+
+//#include <Goptical/Math/Vector>
 #include <Goptical/Math/Transform>
 #include <Goptical/Curve/Composer>
 
@@ -50,7 +52,8 @@ namespace _Goptical {
     {
     }
 
-    double Composer::sagitta(const Math::Vector2 & xy) const
+    //double Composer::sagitta(const Math::Vector2 & xy) const
+    double Composer::sagitta(const Eigen::Vector2f & xy) const
     {
       double z = 0;
 
@@ -60,13 +63,14 @@ namespace _Goptical {
       return z;
     }
 
-    void Composer::derivative(const Math::Vector2 & xy, Math::Vector2 & dxdy) const
+    //void Composer::derivative(const Math::Vector2 & xy, Math::Vector2 & dxdy) const
+    void Composer::derivative(const Eigen::Vector2f & xy, Eigen::Vector2f & dxdy) const
     {
       dxdy.set(0.0);
 
       GOPTICAL_FOREACH(c, _list)
         {
-          Math::Vector2 dtmp;
+          Eigen::Vector2f dtmp;
 
           c->_curve->derivative(c->_inv_transform.transform(xy), dtmp);
 

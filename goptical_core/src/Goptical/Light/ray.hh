@@ -28,7 +28,7 @@
 
 #include "Goptical/common.hh"
 
-#include "Goptical/Math/vector_pair.hh"
+#include "Goptical/Math/vector_pair_eigen.hh"
 
 namespace _Goptical {
 
